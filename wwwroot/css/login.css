@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
+
+body,
+html {
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: #1d243d;
+    padding: 0;
+    margin: 0;
+}
+
+#particles-js {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+}
+
+.container {
+    margin: 0;
+    top: 50px;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    background-color: rgb(33, 41, 66);
+    border-radius: 9px;
+    border-top: 10px solid #5d33e6;
+    border-bottom: 10px solid #5d33e6;
+    width: 400px;
+    height: 500px;
+    box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
+}
+
+.box h4 {
+    font-family: "Source Sans Pro", sans-serif;
+    color: #5c6bc0;
+    font-size: 18px;
+    margin-top: 94px;
+}
+
+    .box h4 span {
+        color: #dfdeee;
+        font-weight: lighter;
+    }
+
+.box h5 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 13px;
+    color: #a1a4ad;
+    letter-spacing: 1.5px;
+    margin-top: 0px;
+    margin-bottom: 55px;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    display: block;
+    margin: 20px auto;
+    background: #262e49;
+    border: 0;
+    border-radius: 5px;
+    padding: 14px 10px;
+    width: 320px;
+    outline: none;
+    color: #d6d6d6;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+::-webkit-input-placeholder {
+    color: #565f79;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    border: 1px solid #79a6fe;
+}
+
+a {
+    color: #5c7fda;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+/* Estilize o checkbox padrão */
+label input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilize o ícone do checkbox */
+label span {
+    height: 13px;
+    width: 13px;
+    border: 2px solid #464d64;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    left: 7.5%;
+}
+
+/* Posicione o ícone corretamente */
+[type="checkbox"]:checked + span:before {
+    font-family: "Font Awesome 5 Free"; /* Use a fonte de ícones do FontAwesome */
+    font-weight: 900; /* Defina o peso da fonte para que o ícone seja exibido corretamente */
+    font-size: 13px; /* Ajuste o tamanho do ícone para que ele se encaixe no span */
+    content: "\f00c"; /* código do ícone checkmark no FontAwesome */
+    position: absolute;
+    top: -6px;
+    left: 0px;
+    color: #896cec;
+    width: 13px;
+}
+
+/* Estilize o texto do checkbox */
+.rmb {
+    position: absolute;
+    margin-left: -26%;
+    margin-top: -3px;
+    color: #dfdeee;
+    font-size: 13px;
+}
+
+
+.btn1 {
+    border: 0;
+    background: #7f5feb;
+    color: #dfdeee;
+    border-radius: 100px;
+    width: 340px;
+    height: 49px;
+    font-size: 16px;
+    position: absolute;
+    top: 79%;
+    left: 8%;
+    transition: 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .btn1:hover {
+        background: #5d33e6;
+    }
+
+.forgetpass {
+    position: relative;
+    float: right;
+    right: 28px;
+}
+
+.dnthave {
+    position: absolute;
+    top: 92%;
+    left: 24%;
+}
+
+.typcn {
+    position: absolute;
+    left: 339px;
+    top: 282px;
+    color: #3b476b;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+    .typcn.active {
+        color: #7f60eb;
+    }
+
+.error {
+    background: #ff3333;
+    text-align: center;
+    width: 337px;
+    height: 20px;
+    padding: 2px;
+    border: 0;
+    border-radius: 5px;
+    margin: 10px auto 10px;
+    position: absolute;
+    top: 31%;
+    left: 7.2%;
+    color: white;
+    display: none;
+}
+
+
+#failMessage {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 68px;
+    z-index: 999;
+}
+
+.alert > .start-icon {
+    margin-right: 0;
+    min-width: 20px;
+    text-align: center;
+}
+
+.alert > .start-icon {
+    margin-right: 5px;
+}
+
+.alert-simple.alert-danger {
+    border: 1px solid rgba(241, 6, 6, 0.81);
+    background-color: rgba(220, 17, 1, 0.16);
+    box-shadow: 0px 0px 2px #ff0303;
+    color: #ff0303;
+    text-shadow: 2px 1px #00040a;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.alert-danger:hover {
+    background-color: rgba(220, 17, 1, 0.33);
+    transition: 0.5s;
+}
+
+.danger {
+    font-size: 18px;
+    color: #ff0303;
+    text-shadow: none;
+}
+
+.alert:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: calc(100% - 44px);
+    border-left: 1px solid;
+    border-right: 2px solid;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 20px;
+}
+
+.fa-times {
+    -webkit-animation: blink-1 2s infinite both;
+    animation: blink-1 2s infinite both;
+}
+
+/*animation blink-1*/
+@-webkit-keyframes blink-1 {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink-1 {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}

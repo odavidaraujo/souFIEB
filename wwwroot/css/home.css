@@ -1,0 +1,17 @@
+.main-fieb {
+    padding: 0 10px;
+    margin-top: 64px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+#demo {
+    box-shadow: 0 0 10px 0 rgba(102,102,102,.75);
+    border-radius: 4px;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.carousel-inner {
+    border-radius: 4px;
+}

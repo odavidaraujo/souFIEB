@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/comida-saudavel.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
+    <link rel="stylesheet" href="~/lib/boxicons/css/boxicons.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/foodmenu.css" />
+    <script src="js/foodmenu.js"></script>
+
+    <title>Merenda Inteligente</title>
+</head>
+
+<body>
+
+    <div class="container crud-table" ng-app="myApp" ng-controller="namesCtrl">
+        <div class="clearfix">
+            <div class="form-inline pull-left">
+                <button class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal">Adicionar Informativos</button>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Data</th>
+                    <th>Café</th>
+                    <th>Almoço</th>
+                    <th>Janta</th>
+                    <th></th>
+                    @* <th></th> *@
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var food in Model)
+                {
+                    <tr>
+                        <td><i class="bx" ng-class="getStatusIconClass[@food.Status]"></i></td>
+                        <td>@food.Data</td>
+                        <td>@food.CafeManha</td>
+                        <td>@food.PratoPrincipal</td>
+                        <td>@food.Janta</td>
+                        <td>
+                            <button class="btn btn-outline-warning" ng-click="setSelectedFood(@food.CodCardapio)" data-toggle="modal" data-target="#editEmployeeModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- Create Modal HTML -->
+        <div id="addEmployeeModal" class="modal fade">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form action="food-add" method="POST" id="createForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Atualizar Registro</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="cafe">Café da Manhã <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="cafe" id="cafe" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="almoco">Almoço <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="almoco" id="almoco" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="janta">Janta <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="janta" id="janta" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="createForm">Salvar</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal HTML -->
+        <div id="editEmployeeModal" class="modal fade">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form action="food-update" method="POST" id="registerForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Atualizar Registro</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="cafe">Café da Manhã <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="cafe" id="cafe" ng-value="selectedFood.cafeManha" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="almoco">Almoço <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="almoco" id="almoco" ng-value="selectedFood.pratoPrincipal" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="janta">Janta <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="janta" id="janta" ng-value="selectedFood.janta" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="active">Status <span style="color: #cc1818;">*</span></label>
+                                        <select name="active" class="selectpicker form-control form-control-lg" ng-value="selectedFood.status">
+                                            <option value="0">Inativo</option>
+                                            <option value="1">Ativo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="hidden_id" ng-value="selectedFood.codCardapio">
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="registerForm">Salvar</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <link rel="stylesheet" href="~/css/home.css" />
+    <script src="~/js/home.js"></script>
+    <title>Merenda Inteligente</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    @{
+        Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+    }
+    <div class="main-fieb">
+    <div id="demo" class="carousel slide sf-box sf-overflow sf-mb-2" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                    <a href="https://localhost:7101/informative" style="text-decoration:none;">
+                    <img src="~/images/banner_fieb.png" width="100%" />
+                </a>
+            </div>
+            <div class="carousel-item">
+                    <a href="https://localhost:7101/statistics" style="text-decoration:none;">
+                    <img src="~/images/merenda.jpg" width="100%" />
+                </a>
+            </div>
+            <div class="carousel-item">
+                    <a href="https://localhost:7101/event" style="text-decoration:none;">
+                    <img src="~/images/scanner.jpg" width="100%" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>

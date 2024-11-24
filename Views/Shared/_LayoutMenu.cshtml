@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/images/souFiebLogo.png">
+
+    <link rel="stylesheet" href="~/css/menu.css" />
+    <script src="~/js/menu.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/boxicons/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/locale/pt-br.js"></script>
+
+
+   
+</head>
+<body id="body-pd">
+    <header class="header text-black" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+
+        <span id="helloworld" class="">Olá,</span>
+        
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="input-group">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,20">
+                            ITB Belval
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">ITB Paulista</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">ITB Silveira</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">ITB Alphaville</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">ITB Imperial</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="input-group ">
+                <a class="nav-link" href="#"><i class="fa-regular fa-envelope headicon"></i><span class="badg text-white">98</span></a>
+            </div>
+            <div class="input-group">
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,20">
+                            <i class="fa fa-bell headicon"></i><span class="badg text-white">98</span>
+                        </a>
+                        <ul class="dropdown-menu w-auto" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item d-flex justify-content-between align-items-center" href="/event">
+                                    <div>
+                                        <i class="fa fa-qrcode fa-fw"></i> Novo QrCode
+                                    </div>
+                                    <span class="text-muted small ml-5">4 minutos atrás</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex justify-content-between align-items-center" href="/users">
+                                    <div><i class="fa fa-user fa-fw"></i> 3 Novos Usuários</div>
+                                    <span class="text-muted small ml-5">12 minutos atrás</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex justify-content-between align-items-center" href="/informative">
+                                    <div><i class="fa fa-envelope fa-fw"></i> Último Informativo</div>
+                                    <span class="text-muted small ml-5" id="lastInformativo">6 minutos atrás</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-center" href="#">
+                                    <strong>Ver Todos Alertas</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                        
+            </div>
+            <div class="input-group">
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,10">
+                            <div class="header_img"> <img id="img_user" src="." alt=""> </div>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">Configurações</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Escolas</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/Login/Logout">Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="home" class="nav_logo">
+                    <i class='bx bx-layer nav_logo-icon'></i>
+                    <span class="nav_logo-name">souFIEB</span>
+                </a>
+                <div class="nav_list">
+                    <a href="/home" class="nav_link active_menu">
+                        <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Home</span>
+                    </a>
+
+                    <div class="nav_link submenu_toggle">
+                        <i class='bx bx-user nav_icon'></i>
+                        <span class="nav_name">Users</span>
+                        <i class='bx bx-chevron-down submenu_icon'></i>
+                    </div>
+                    <div id="submenu">
+                        <a href="/users" class="nav_link submenu_item">
+                            <i class='bx bx-user-check nav_icon'></i>
+                            <span class="nav_name">Listar</span>
+                        </a>
+                        <a href="/cadastrar-user" class="nav_link submenu_item">
+                            <i class='bx bx-user-plus nav_icon'></i>
+                            <span class="nav_name">Cadastrar</span>
+                        </a>
+                    </div>
+
+                    <a href="/informative" class="nav_link">
+                        <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="menu-collapsed">Informativos <span class="badge badge-pill badge-primary ml-2" id="badge-infos">0</span></span>
+                    </a>
+                    <a href="/event" class="nav_link">
+                        <i class='bx bx-qr-scan nav_icon'></i>
+                        <span class="nav_name">QrCode</span>
+                    </a>
+                    <a href="/foodmenu" class="nav_link">
+                        <i class='bx bx-dish nav_icon'></i>
+                        <span class="nav_name">Food Menu</span>
+                    </a>
+                    <a href="/statistics" class="nav_link">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                </div>
+            </div> <a href="/Login/Logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+        </nav>
+    </div>
+
+    @RenderBody()
+</body>
+</html>

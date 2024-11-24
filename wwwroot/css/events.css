@@ -1,0 +1,13 @@
+@import "https://fonts.googleapis.com/css?family=Lato:300,300i,900,900i";
+
+body {
+    margin: 68px;
+}
+
+video {
+    margin: 10px auto;
+}
+
+iframe {
+    display: none;
+}

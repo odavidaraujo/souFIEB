@@ -1,0 +1,303 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/comida-saudavel.png">
+    <link rel="stylesheet" href="lib/font-awesome/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-resource.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6/dist/jquery.inputmask.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="css/users.css" />
+    <script src="js/users.js"></script>
+
+    <title>Merenda Inteligente</title>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="namesCtrl">
+        <div class="container">
+            <table class="demo-table">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th></th>
+                        <th></th>
+                        @* <th></th> *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="profile">
+                                    <img src="@user.Foto" alt="" ng-click="setSelectedUser(@user.RM)" data-toggle="modal" data-target="#imagemModal"
+                                    @if (user.Ativo == "0")
+                                    {
+                                        <text>style="border: 3px solid red;"</text>
+                                    }
+                                    />
+                                    <div class="info">
+                                        <div class="title">@user.Nome</div>
+                                        <div class="username">@user.RM</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.Telefone</td>
+                            <td>@user.CPF</td>
+                            <td>@user.DataNascimentoFormatada</td>
+                            <td>
+                                <button class="btn btn-outline-info" ng-click="setSelectedUser(@user.RM)" data-toggle="modal" data-target="#detalharModal"><i class="fa-regular fa-file-lines"></i></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-warning" ng-click="setSelectedUser(@user.RM)" data-toggle="modal" data-target="#editEmployeeModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                            </td>
+                            @* <td>
+                                <button class="btn btn-outline-danger" ng-click="setSelectedUser(@user.RM)" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="fa fa-trash"></i></button>
+                            </td> *@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div id="imagemModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imagemModal">Foto do Usuário</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img ng-src="{{ selectedUser.foto }}" alt="Imagem ampliada" class="img-fluid" style="max-width: 80%; height: auto;">
+                            <p>Nome: {{ selectedUser.nome }}<br />RM: {{ selectedUser.rm }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="detalharModal" tabindex="-1" role="dialog" aria-labelledby="detalharModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detalharModalLabel">Detalhes do Registro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Nome: {{selectedUser.nome }}</p>
+                            <p>RM: {{ selectedUser.rm }}</p>
+                            <p>RG: {{ selectedUser.rg }}</p>
+                            <p>Data de Nascimento: {{ selectedUser.dataNascimentoFormatada }}</p>
+                            <p>Telefone: {{ selectedUser.telefone }}</p>
+                            <p>Email: {{ selectedUser.email }}</p>
+                            <p>Rua: {{ selectedUser.rua }}</p>
+                            <p>CEP: {{ selectedUser.cep }}</p>
+                            <p>Bairro: {{ selectedUser.bairro }}</p>
+                            <p>Cidade: {{ selectedUser.cidade }}</p>
+                            <p>UF: {{ selectedUser.uf }}</p>
+                            <p>Complemento: {{ selectedUser.complemento }}</p>
+                            <p>Senha: {{ selectedUser.senha }}</p>
+                            <p>Chave: {{ selectedUser.chave }}</p>
+                            <p>Limite Diário de Refeição: {{ selectedUser.limiteDiarioRefeicao }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Modal HTML -->
+            <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <form action="users-update" method="POST" id="registerForm" enctype="multipart/form-data">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Atualizar Registro</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="fullname">Nome Completo <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="fullname" id="fullname" ng-value="selectedUser.nome" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="datebirth">Data de Nascimentos <span style="color: #cc1818;">*</span></label>
+                                            <input type="date" class="form-control form-control-lg" name="datebirth" id="datebirth" ng-value="selectedUser.dataInput" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="rg">RG <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="rg" id="rg" ng-value="selectedUser.rg" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="cpf">CPF <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="cpf" id="cpf" ng-value="selectedUser.cpf" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="email">Email <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="email" id="email" ng-value="selectedUser.email" required>
+                                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="password">Senha <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="password" id="password" ng-value="selectedUser.senha" disabled required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="phone">Celular <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="phone" id="phone" ng-value="selectedUser.telefone" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="file">Foto</label><br />
+                                            <input type="file" name="file" id="file" title="" accept="image/*" class="file-upload" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="postalcode">CEP <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="postalcode" id="postalcode" ng-value="selectedUser.cep" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="streetname">Endereço <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="streetname" id="streetname" ng-value="selectedUser.rua" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="streetno">Número <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="streetno" id="streetno" ng-value="selectedUser.num" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="city">Cidade <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="city" id="city" ng-value="selectedUser.cidade" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="state">Estado <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="state" id="state" ng-value="selectedUser.uf" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="district">Município <span style="color: #cc1818;">*</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="district" id="district" ng-value="selectedUser.bairro" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="additional">Complemento</label>
+                                            <input type="text" class="form-control form-control-lg" name="additional" id="additional" ng-value="selectedUser.complemento">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="admin">Admin <span style="color: #cc1818;">*</span></label>
+                                            <select name="admin" class="selectpicker form-control form-control-lg" ng-value="selectedUser.admin">
+                                                <option value="0">Não</option>
+                                                <option value="1">Sim</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="active">Status <span style="color: #cc1818;">*</span></label>
+                                            <select name="active" class="selectpicker form-control form-control-lg" ng-value="selectedUser.ativo">
+                                                <option value="0">Inativo</option>
+                                                <option value="1">Ativo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="rm" ng-value="selectedUser.rm">
+
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="registerForm">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Employee</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete these Records?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-danger" value="Delete" ng-click="deleteUser(selectedUser.rm)">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

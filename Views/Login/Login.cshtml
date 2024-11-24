@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="js/login.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+
+    <title>Merenda Inteligente</title>
+</head>
+
+<body id="particles-js">
+    @if (ViewBag.FailLogin != null && (bool)ViewBag.FailLogin == true)
+    {
+        <div id="failMessage" class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered" style="display: block; opacity: 1;">
+            <button type="button" id="CloseButtonOps" class="close font__size-18" data-dismiss="alert">
+                <span aria-hidden="true">
+                    <i class="fa fa-times danger "></i>
+                </span>
+                <span class="sr-only">Close</span>
+            </button>
+            <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+            <strong class="font__weight-semibold">Ops!</strong> Usuário e/ou Senha incorreto.
+        </div>
+    }
+    <div class="container">
+    <div class="animated bounceInDown">
+            <span class="error animated tada" id="msg"></span>
+            <form name="form1" id="loginForm" method="post" class="box" action="/Login/ValidaLogin">
+                <h4>Admin<span>Dashboard</span></h4>
+                <h5>Faça login em sua conta.</h5>
+                <input type="text" name="email" placeholder="Email" id="idUsuario" for="" autocomplete="off">
+                <i class="typcn typcn-eye" id="eye"></i>
+                <input type="password" name="password" placeholder="Passsword" id="idSenha" autocomplete="off">
+                </br>
+                <button type="submit" class="btn1">Entrar</button>
+            </form>
+    </div>
+    </div>
+</body>
+</html>

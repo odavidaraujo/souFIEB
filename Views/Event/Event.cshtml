@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scanner</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+    <link rel="stylesheet" href="css/events.css" />
+    <script src="js/event.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="namesCtrl">
+        <div class="container bg-light">
+            <div class="row">
+                <div class="col-12 text-center mt-4">
+                    <h1 class="display-4">Scanear QrCode</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="video text-center p-3">
+                        <video id="preview" class="col-12 z-depth-3"></video>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <form action="#" method="get">
+                        <div class="input-group mt-4">
+                            <div class="form-group">
+                                <label for "nome">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome">
+                            </div>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="form-group">
+                                <label for "rm">RM</label>
+                                <input type="text" class="form-control" name="rm" id="rm">
+                            </div>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="form-group">
+                                <label for "periodo">Período</label>
+                                <input type="text" class="form-control" name="periodo" id="periodo">
+                            </div>
+                        </div>
+                        <input id="reset" type="hidden">
+                        <button type="reset" class="btn btn-primary mt-3">Resetar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- table -->
+        <div class="container bg-light">
+            <table class="table table-hover mt-4">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>RM</th>
+                        <th>Período</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody id="tabel">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

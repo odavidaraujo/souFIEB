@@ -1,0 +1,198 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/comida-saudavel.png">
+    <link rel="stylesheet" href="~/lib/boxicons/css/boxicons.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/informative.css" />
+    <script src="js/informative.js"></script>
+
+    <title>Merenda Inteligente</title>
+</head>
+
+<body>
+
+    <div class="container crud-table" ng-app="myApp" ng-controller="namesCtrl">
+        <div class="clearfix">
+            <div class="form-inline pull-left">
+                <button class="btn btn-success" data-toggle="modal" data-target="#addEmployeeModal">Adicionar Informativos</button>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Admin</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Título</th>
+                    <th></th>
+                    @* <th></th> *@
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var informativo in Model)
+                {
+                    <tr>
+                        <td><i class="bx bx-show"></i> @informativo.NumeroLeituras</td>
+                        <td>@informativo.Admin</td>
+                        <td>@informativo.Data</td>
+                        <td><i class="bx" ng-class="getStatusIconClass[@informativo.Status]"></i></td>
+                        <td>@informativo.Titulo</td>
+                        <td>
+                            <button class="btn btn-outline-warning" ng-click="setSelectedInfo(@informativo.CodigoInformativo)" data-toggle="modal" data-target="#editEmployeeModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                        @* <td>
+                            <button class="btn btn-outline-danger" ng-click="setSelectedInfo(@informativo.CodigoInformativo)" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="fa fa-trash"></i></button>
+                        </td> *@
+                    </tr>
+                }
+                <tr class="text-left">
+                    <td colspan="1"><b>Visualizações</b></td>
+                    <td class=""><i class="bx bx-show"></i> @ViewBag.TotalLeituras</td>
+                    <td colspan="5"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="addEmployeeModal" class="modal fade">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form action="informative-add" method="POST" id="createForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Atualizar Registro</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="name">Nome <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="name" id="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="titulo">Título <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="titulo" id="titulo" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10">
+                                    <div class="form-group">
+                                        <label for="mensagem">Mensagem <span style="color: #cc1818;">*</span></label>
+                                        <textarea class="form-control form-control-lg" name="mensagem" id="mensagem" rows="6" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="createForm">Salvar</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal HTML -->
+        <div id="editEmployeeModal" class="modal fade">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form action="informative-update" method="POST" id="registerForm">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Atualizar Registro</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="adminEdit">Admin <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="adminEdit" id="adminEdit" ng-value="selectedInfo.admin" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="tituloEdit">Título <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="tituloEdit" id="tituloEdit" ng-value="selectedInfo.titulo" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label for="dataEdit">Data <span style="color: #cc1818;">*</span></label>
+                                        <input type="text" class="form-control form-control-lg" name="dataEdit" id="dataEdit" ng-value="selectedInfo.data" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10">
+                                    <div class="form-group">
+                                        <label for="mensagemEdit">Mensagem <span style="color: #cc1818;">*</span></label>
+                                        <textarea class="form-control form-control-lg" name="mensagemEdit" id="mensagemEdit" ng-value="selectedInfo.mensagem" rows="6" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="active">Status <span style="color: #cc1818;">*</span></label>
+                                        <select name="active" class="selectpicker form-control form-control-lg" ng-value="selectedInfo.status">
+                                            <option value="0">Inativo</option>
+                                            <option value="1">Ativo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="hidden_id" ng-value="selectedInfo.codigoInformativo">
+
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="registerForm">Salvar</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal HTML -->
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Employee</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete" ng-click="deleteInfo(selectedInfo.codigoInformativo)">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

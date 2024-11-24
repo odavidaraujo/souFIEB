@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/comida-saudavel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6/dist/jquery.inputmask.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <link rel="stylesheet" href="~/css/cadastraruser.css" />
+    <script src="js/cadastraruser.js"></script>
+
+    <title>Merenda Inteligente</title>
+</head>
+<body class="body-c">
+    @{
+        Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+    }
+    @{
+        ViewBag.Title = "Cadastrar User";
+    }
+    
+    @if (ViewBag.CadastroSucesso != null && (bool)ViewBag.CadastroSucesso == true)
+    {
+        <div id="successMessage" class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered" style="display: block; opacity: 1;">
+            <button type="button" class="close font__size-18" data-dismiss="alert">
+                <span aria-hidden="true">
+                    <i class="fa fa-times greencross"></i>
+                </span>
+                <span class="sr-only">Close</span>
+            </button>
+            <i class="start-icon far fa-check-circle faa-tada animated"></i>
+            <strong class="font__weight-semibold">Muito bem!</strong> Cadastro realizado com sucesso.
+        </div>
+    }
+    @if (ViewBag.CadastroFail != null && (bool)ViewBag.CadastroFail == true)
+    {
+        <div id="failMessage" class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered" style="display: block; opacity: 1;">
+            <button type="button" id="CloseButtonOps" class="close font__size-18" data-dismiss="alert">
+                <span aria-hidden="true">
+                    <i class="fa fa-times danger "></i>
+                </span>
+                <span class="sr-only">Close</span>
+            </button>
+            <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+            <strong class="font__weight-semibold">Ops!</strong>@ViewBag.ErrorMsg
+        </div>
+    }
+
+    <div class="joincontent container">
+        <div class="progresscont container-fluid">
+            <div class="progress" style="height: 5px;">
+                <div id="progresswizard" class="progress-bar" role="progressbar" style="width: 15%;" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="circleblocks">
+                <div class="d-flex justify-content-around mb-3">
+                    <div class="p-2">
+                        <div class="aboutblock">
+                            <div class="circulo activecirculo text-center"><i class="fas fa-user"></i></div>
+                            <div class="title text-center">Sobre</div>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="addressblock">
+                            <div class="circulo text-center"><i class="fas fa-location-arrow"></i></div>
+                            <div class="title text-center">Endereço</div>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="verifyblock">
+                            <div class="circulo text-center"><i class="far fa-id-card"></i></div>
+                            <div class="title text-center">Verificação</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="cadastrar-user" method="POST" id="registerForm" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="@ViewData["CSRF_Token"]">
+            <div class="registration-content container">
+                <div id="aboutcont" data-progress="15%">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="fullname">Nome Completo <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="fullname" id="fullname" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="datebirth">Data de Nascimento <span style="color: #cc1818;">*</span></label>
+                                <input type="date" class="form-control form-control-lg" name="datebirth" id="datebirth" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="rg">RG <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="rg" id="rg" placeholder="__.___.___-_" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="cpf">CPF <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="cpf" id="cpf" placeholder="___.___.___-__" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="email">Email <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="email" id="email" placeholder="example@email.com" required>
+                                <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail.</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="password">Senha <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="password" id="password" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="phone">Celular <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="phone" id="phone" placeholder="(__) _____-____" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="rm">RM</label>
+                                <input type="text" class="form-control form-control-lg" name="rm" id="rm">
+                                <small id="rmActive" class="form-text text-muted">Opcional. Somente caso possua um rm ativo.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="addrescont" data-progress="55%">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="postalcode">CEP <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="postalcode" id="postalcode" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="streetname">Endereço <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="streetname" id="streetname" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="streetno">Número <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="streetno" id="streetno" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="city">Cidade <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="city" id="city" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="state">Estado <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="state" id="state" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="district">Município <span style="color: #cc1818;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="district" id="district" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="additional">Complemento</label>
+                                <input type="text" class="form-control form-control-lg" name="additional" id="additional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="verifycont" data-progress="90%">
+                    <h6 class="text-center">
+                        Para verificar a identidade com base nas regras, você deve fazer upload de uma foto de identificação pessoal
+                        <span style="color: #cc1818;">*</span></h6>
+
+                    <div class="image-picker d-flex align-items-center justify-content-center mb-5">
+                        <div class="image-picker-hint text-center text-muted">
+                            <svg width="90" height="40" viewBox="0 0 90 66" fill="#CCC" class="mb-2" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M45 0C51.9047 0 58.828 2.60948 64.0938 7.875C68.18 11.9613 70.6146 17.074 71.5312 22.375C81.9872 24.0733 90 33.0815 90 44C90 56.1265 80.1265 66 68 66H19C8.5086 66 0 57.4914 0 47C0 36.7863 8.0804 28.5277 18.1875 28.0938C17.895 20.817 20.3931 13.4194 25.9375 7.875C31.1999 2.61244 38.0953 0 45 0ZM45 4C39.1085 4 33.2504 6.2183 28.75 10.7188C23.5485 15.9202 21.3768 22.9839 22.1875 29.75C22.2231 30.0328 22.1979 30.32 22.1134 30.5923C22.029 30.8646 21.8873 31.1157 21.698 31.3287C21.5086 31.5418 21.2758 31.7119 21.0153 31.8277C20.7548 31.9435 20.4726 32.0022 20.1875 32H19C10.6554 32 4 38.6554 4 47C4 55.3446 10.6554 62 19 62H68C77.9647 62 86 53.9647 86 44C86 34.5907 78.8314 26.8955 69.6562 26.0625C69.1992 26.0228 68.7698 25.8273 68.4398 25.5087C68.1099 25.1901 67.8995 24.7678 67.8438 24.3125C67.2668 19.3422 65.0999 14.5373 61.2812 10.7188C56.7838 6.22127 50.8915 4 45 4ZM45 24C45.5349 24.01 46.058 24.2382 46.3438 24.5L57.3438 34.5C58.1657 35.2154 58.2056 36.5644 57.5 37.3438C56.7943 38.1231 55.4326 38.1776 54.6562 37.4688L47 30.5V52C47 53.1046 46.1048 54 45 54C43.8952 54 43 53.1046 43 52V30.5L35.3438 37.4688C34.5674 38.1776 33.2428 38.0879 32.5 37.3438C31.7299 36.5725 31.8737 35.2022 32.6562 34.5L43.6562 24.5C44.0965 24.0977 44.4692 23.9983 45 24Z" />
+                            </svg>
+                            <br>
+
+                            Solte os arquivos aqui...
+                            <br>
+                            ou
+                            <br>
+
+                            <div class="btn btn-secondary btn-sm mt-1">
+                                Browse files
+                            </div>
+                        </div>
+
+                        <div id="preview" class="d-none">
+                        </div>
+
+                        <div id="remove" class="remove btn btn-danger btn-sm d-none">
+                            &times; Remover
+                        </div>
+
+                        <input type="file" name="file" id="file" title="" accept="image/*" class="file-upload" required />
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mb-3 wizard-navigation ">
+                <div class="p-2"><button id="prevbtn" type="button" class="btn btn-outline-dark btn-lg">Previous</button></div>
+                <div class="p-2">
+                    <button id="nextbtn" type="button" class="btn btn-primary btn-lg text-center">Next</button>
+                    <button id="submitForm" name="submitForm" style="" type="submit" class="btn btn-primary btn-lg" form="registerForm">Create Profile</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
+
+body {
+    height: 100%;
+    margin: 68px;
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+}
+
+.container {
+    margin: 0 auto;
+}
+
+table {
+    border-collapse: separate !important;
+}
+
+.demo-table {
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+    .demo-table thead tr td {
+        text-align: left;
+        padding: 10px 8px;
+        font-weight: 600;
+    }
+
+    .demo-table tbody tr td {
+        padding: 10px 8px;
+        background-color: white;
+    }
+
+        .demo-table tbody tr td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .demo-table tbody tr td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .demo-table tbody tr td .status .inactive,
+        .demo-table tbody tr td .status .active {
+            display: flex;
+            align-items: center;
+        }
+
+            .demo-table tbody tr td .status .inactive span,
+            .demo-table tbody tr td .status .active span {
+                width: 10px;
+                height: 10px;
+                margin-right: 5px;
+                border-radius: 50%;
+            }
+
+            .demo-table tbody tr td .status .active span {
+                background-color: green;
+            }
+
+            .demo-table tbody tr td .status .inactive span {
+                background-color: red;
+            }
+
+        .demo-table tbody tr td .profile {
+            display: flex;
+            align-items: center;
+        }
+
+            .demo-table tbody tr td .profile .info .title {
+                font-weight: 700;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+            .demo-table tbody tr td .profile .info .username {
+                font-size: 12px;
+                opacity: 0.5;
+            }
+
+            .demo-table tbody tr td .profile img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+
+        .demo-table tbody tr td.check-row {
+            width: 1%;
+        }
+
+            .demo-table tbody tr td.check-row .check {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .demo-table tbody tr td.check-row .check input {
+                    appearance: none;
+                    width: 30px;
+                    height: 30px;
+                    border: 2px solid #e6e6e6;
+                    border-radius: 50%;
+                }
+
+                    .demo-table tbody tr td.check-row .check input:checked {
+                        background: #0672ff;
+                        border-color: #0672ff;
+                    }
+
+    .demo-table tbody tr:last-child td {
+        border: 0;
+    }

@@ -1,0 +1,8 @@
+bin
+obj
+.vs
+lib
+*.csproj.user
+appsettings.Development.json
+appsettings.json
+firebase-adminsdk.json
