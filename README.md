@@ -6,7 +6,7 @@
 
 <div align="center">
     <a href="https://dotnet.microsoft.com/" target="_blank">
-      <img alt="Version DotNet" src="https://img.shields.io/badge/.NET-7.0-blueviolet?logo=dotnet" />
+      <img alt="Version DotNet" src="https://img.shields.io/badge/.NET-6.0-blueviolet?logo=dotnet" />
     </a>
     <a href="https://github.com/odavidaraujo/souFIEB/commits/main" target="_blank">
       <img alt="Last Commit" src="https://img.shields.io/github/last-commit/odavidaraujo/souFIEB?color=brightgreen" />
