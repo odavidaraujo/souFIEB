@@ -24,6 +24,9 @@
 <br>
 
 O sistema foi desenvolvido para ser intuitivo, prático e seguro, facilitando o dia a dia da gestão escolar e incentivando hábitos conscientes entre os alunos.
+<div align="center">
+    <img width="1500" height="600" alt="image" src="https://github.com/user-attachments/assets/0201ef31-22a2-471f-819c-0bc1777dc204" />
+</div>
 
 ---
 
@@ -73,11 +76,19 @@ souFIEB/
 
 - [ ] Exibição de conteúdo institucional (ex: Carteirinha do Estudante, Instituição, Curso)
 - [ ] Sistema de login e gerenciamento de usuários
-- [ ] Painel administrativo para CRUD de alunos e informativos
+- [ ] Painel administrativo para CRUD de alunos e informativos com todas validações dos campos
 - [ ] Formulários de cardápio
 
 ---
+## 📸 Screenshots - Cadastro de Alunos e Listagem
 
+> <img width="1879" height="923" alt="image" src="https://github.com/user-attachments/assets/1fb99632-bedd-44f7-a786-691f4c115f2e" />
+
+> <img width="1879" height="923" alt="image" src="https://github.com/user-attachments/assets/5e8609f2-aa5d-4bec-a30f-89653bf40943" />
+
+
+
+---
 
 ## 👨‍💻 Autor
 
